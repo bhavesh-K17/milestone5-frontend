@@ -1,0 +1,5 @@
+services:
+  frontend:
+    build: ./milestone5-frontend
+    ports:
+      - "80:80"

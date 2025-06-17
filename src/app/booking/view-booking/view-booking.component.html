@@ -1,0 +1,77 @@
+<h3>view Booking</h3>
+<div>   
+    
+    <input type="number" [(ngModel)]="bookingId" placeholder="bookingId" name="viewBooking"/>
+    <button (click)="viewBookingById()">View Booking</button>
+    <button (click)="getFullDetails()"> Get Full Details</button>
+
+    <div *ngIf="booking" class="viewBooking">
+        <h3>Booking Info:</h3>
+        <ul>
+            <li><strong>ID:</strong> {{booking.id}} </li>
+            <li><strong>Customer ID:</strong> {{booking.customerId}} </li>
+            <li><strong>Flight ID:</strong> {{booking.flightId}} </li>
+            <li><strong>Booking Date:</strong> {{booking.bookingDate}} </li>
+            <li><strong>Seat Number:</strong> {{booking.seatNumber}} </li>
+            <li><strong>Status:</strong> {{booking.status}} </li>
+            <div *ngIf="booking.payment">
+                <h3>Payment details</h3> 
+                <li><strong>Paymet ID:</strong> {{booking.payment.id}} </li> 
+                <li><strong>Booking ID:</strong> {{booking.payment.bookingId}} </li>
+                <li><strong>Amount:</strong> {{booking.payment.amount}} </li>
+                <li><strong>Payment Date:</strong> {{booking.payment.paymentDate}} </li>
+                <li><strong>Payment Method:</strong> {{booking.payment.paymentMethod}} </li>
+                <li><strong>Payment Status:</strong> {{booking.payment.paymentStatus}} </li>
+            </div>
+        </ul>
+    </div>
+
+    <div *ngIf="bookingDetails">
+        <h3>Booking Full Details:</h3>
+    <ul>
+      <li><strong>Booking ID:</strong> {{ bookingDetails.id }}</li>
+      <li><strong>Customer ID:</strong> {{ bookingDetails.customer.id }}</li>
+      <li><strong>Flight ID:</strong> {{ bookingDetails.flightId.id }}</li>
+      <li><strong>Booking Date:</strong> {{ bookingDetails.bookingDate }}</li>
+      <li><strong>Seat Number:</strong> {{ bookingDetails.seatNumber }}</li>
+      <li><strong>Status:</strong> {{ bookingDetails.status }}</li>
+
+      <li><strong>Payment:</strong>
+        <ul *ngIf="bookingDetails.payment">
+          <li><strong>Payment ID:</strong> {{ bookingDetails.payment.id }}</li>
+          <li><strong>Amount:</strong> {{ bookingDetails.payment.amount }}</li>
+          <li><strong>Payment Date:</strong> {{ bookingDetails.payment.paymentDate }}</li>
+          <li><strong>Method:</strong> {{ bookingDetails.payment.paymentMethod }}</li>
+          <li><strong>Status:</strong> {{ bookingDetails.payment.paymentStatus }}</li>
+        </ul>
+      </li>
+    </ul>
+    </div>
+</div>
+<div>
+    <h4>All Bookings</h4>
+
+    <table border="1"cellPadding="5" cellSpacing="0">
+        <thead>
+            <th>ID</th>
+            <th>Customer ID</th>
+            <th>Flight ID</th>
+            <th>Booking Date</th>
+            <th>Seat Number</th>
+            <th>Status</th>
+            <th>Payment ID</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookings">
+                <td>{{booking.id}}</td>
+                <td>{{booking.customerId}}</td>
+                <td>{{booking.flightId}}</td>
+                <td>{{booking.bookingDate}}</td>
+                <td>{{booking.seatNumber}}</td>
+                <td>{{booking.status}}</td>
+                <td>{{booking.payment.id}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
